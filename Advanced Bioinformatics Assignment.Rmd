@@ -1,0 +1,110 @@
+---
+title: "AdvancedBioinfromatics2021"
+author: "m2006666/ 18039"
+date: "09/04/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+
+## Task 3.1
+
+```{r, echo=FALSE}
+
+sum(5:55)
+```
+## Task 3.2
+
+```{r, echo=FALSE}
+
+sumfun <- function(n) {
+  
+  s <- sum(5:n)
+  return(s)
+  
+} 
+
+sumfun(10)
+sumfun(20)
+sumfun(100)
+
+```
+
+## Task 3.3
+```{r, echo=FALSE}
+Fibonacci <- function(n) {
+    res <- numeric(n)
+    if (n == 2) {
+    res[c(1,2)] <- 1
+    return(res) }
+    else if (n == 1) {
+    res[1] <- 1
+    return(res) }
+    else if (n > 2) {
+    res[c(1,2)] <- 1
+    
+    for (i in 3:n) {
+    res[i] <- res[i-1] + res[i-2]
+    }
+    return(res)
+}
+    
+}
+
+Fibonacci(12)
+
+```
+
+
+
+
+## Task 3.4
+
+
+
+```{r mtcars, echo=FALSE}
+library(ggplot2)
+mtcars$gear <- as.factor(mtcars$gear)
+
+ggplot(mtcars, aes(x=gear, y=mpg, color=gear)) +
+  geom_boxplot()
+
+
+
+
+```
+## Task 3.5
+```{r cars, echo=FALSE}
+summary(lm(dist ~ speed, data = cars))
+
+```
+
+
+## Task 3.6
+```{r cars2, echo=FALSE}
+library(ggplot2)
+
+ggplot(cars,aes(x=speed, y=dist)) + geom_point() + geom_smooth(method='lm', formula= y~x)
+
+```
+
+
+## Task 3.7
+``` {r cars3, echo=FALSE}
+#distance = d1 + d2
+#d1 = reaction * speed
+#d2 = speed^2 * b
+ 
+#distance ~ speed * reaction + b*(speed^2) + c
+#dist ~ poly(speed,2)
+
+summary(lm(dist ~ poly(speed,2), data=cars))
+
+ggplot(cars,aes(x=speed, y=dist)) + geom_point() + geom_smooth(method='lm', formula= y~poly(x,2))
+```
+
